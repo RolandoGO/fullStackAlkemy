@@ -1,0 +1,28 @@
+
+
+.homeGlobalContainer{
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url("../../../public/wallet_image.jpg");
+    background-repeat: no-repeat;
+    background-size: contain;
+
+}
+
+.homeContainer{
+
+    background-color: rgba(255,255,255,.6);
+    height: 300px;
+    width: 300px;
+    padding: 10px;
+    border-radius: 5px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    
+    
+}

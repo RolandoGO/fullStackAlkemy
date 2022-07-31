@@ -1,0 +1,28 @@
+@import url('https://fonts.googleapis.com/css2?family=Radio+Canada&family=Roboto:ital,wght@1,300&display=swap');
+
+*{
+    font-family: 'Roboto', sans-serif;
+    padding: 0;
+    margin: 0;
+}
+
+button{
+
+    outline: none;
+    border: none;
+}
+button:hover{
+    background-color: rgb(177, 165, 165);
+}
+
+body{
+    background-color: rgb(112, 67, 170);
+}
+.errorMsj{
+    font-weight: bold;
+    color: rgb(201, 0, 0);
+}
+.successMsj{
+
+    color: green;
+}
