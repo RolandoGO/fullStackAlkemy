@@ -1,0 +1,63 @@
+CREATE DATABASE users_wallet;
+USE users_wallet;
+
+
+CREATE TABLE users(
+
+user_id INT PRIMARY KEY AUTO_INCREMENT,
+user_email VARCHAR(200) NOT NULL UNIQUE,
+user_hash VARCHAR(255) NOT NULL
+
+);
+
+CREATE TABLE users_operations(
+
+operation_id INT PRIMARY KEY AUTO_INCREMENT,
+user_id INT,
+amount DECIMAL (65,30) NOT NULL,
+operation_type VARCHAR(10) NOT NULL,
+operation_date timestamp DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+operation_concept VARCHAR(100) NOT NULL,
+FOREIGN KEY (user_id) REFERENCES users(user_id) ON DELETE CASCADE 
+
+);
+
+
+
+
+-- avoid repeat user TRIGEER --
+
+DELIMITER $$
+
+CREATE TRIGGER stop_user_duplicate
+BEFORE INSERT ON users
+FOR EACH ROW 
+BEGIN
+	
+	IF EXISTS(SELECT * FROM users WHERE user_email = new.user_email) 
+    THEN SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'THIS EMAIL ALREADY EXIST'; 
+    
+    END IF; 
+END$$
+
+DELIMITER ;
+
+
+-- trigger for error msj on update of operation_type --
+
+
+DROP TRIGGER err_msj;
+
+DELIMITER $$
+
+CREATE TRIGGER err_msj
+BEFORE UPDATE ON users_operations
+FOR EACH ROW 
+BEGIN
+	IF new.operation_type != old.operation_type THEN SIGNAL SQLSTATE '45000'
+    SET MESSAGE_TEXT = 'UPDATE NOT ALLOWED'; 
+    END IF; 
+END$$
+
+DELIMITER ;
