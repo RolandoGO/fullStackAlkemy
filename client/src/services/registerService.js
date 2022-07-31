@@ -14,11 +14,13 @@ export default async function registerService(data){
     }
 
     catch(err){
-
-        responseObj.error = err.response.data.message
+        
+        if(err.response.data.message) responseObj.error = err.response.data.message
+        else responseObj.error = "server not working"
     }
 
+    
+    
     return responseObj
-
 
 }

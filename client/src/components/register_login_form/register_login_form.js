@@ -14,7 +14,7 @@ export default function RegisterLoginForm({values}) {
   function handleSubmit(e){
 
     setError()
-    setSuccessMsj(preState =>!preState)
+    setSuccessMsj(false)
     e.preventDefault()
 
     const userData ={

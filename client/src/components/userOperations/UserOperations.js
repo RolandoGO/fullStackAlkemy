@@ -12,12 +12,12 @@ import "./operation.css"
 import Logout from '../logOutComponent'
 
 
-
+//COMPONENT THAT DISPLAYS THE LOGOUT COMPONENT BTN, THE BALANCE AND USER EMAIL STATE AND THE OPERATIONS TABLE COMPONENT 
 export default function UserOperations() {
     
     
     
-    
+    //THE LOADING STATE IS WHATS CHANGE WHIT THE CRUD OPERATIONS AND ALLOWS THE RERENDER WHIT THE CHANGES MADE
     const [loading, setLoading]=useState(false)
     
     const [showModal, setShowModal] = useState(false)
@@ -25,20 +25,25 @@ export default function UserOperations() {
 
     const [creationModal, setCreationModal] = useState(false)
 
+//HOOK FOR THE READ OF THE  DATA,  HAPPEN WHIT THE CHANGE OF THE LOADING STATE
     const {error, email,userData} = UseGetOperations(loading)
 
+
+    //METHODS FOR THE EDITION, CREATION AND DELETION OF OPERATIONS
     const {handleUserDeleteOperation, handleUserEditOperation, handleUserCreateOperation} =CrudHandlers(setLoading)
     
 
     
     
-
+//MODAL POP UP FUNCTION FOR EDITON AND DELETION, AND FOR CREATING THE STATE  WHIT THE DATA FOR IT IN MODAL DATA
     function modalFunctionDisplay(operation){
 
     setShowModal(prev=>!prev)
     setModalData(operation)
     }
 
+
+//ALL THIS THREE FUNCTIONS  CLOSE THE MODAL, START THE LOADING AND TRIGGER THE FUNCTIONS FOR THE API CALLS THROUGH THE HANDLERS
     function handleDelete(data){
         
         setShowModal(prev=>!prev)
@@ -62,7 +67,7 @@ export default function UserOperations() {
         
 
     }
-
+//...................................
     
     const childProps ={
         userData, handleDelete, handleEdit, 
